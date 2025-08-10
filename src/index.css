@@ -1,41 +1,44 @@
-/* src/index.css */
-
-/* Importa fontes do Google */
+/* ===============================
+   FONTES DO GOOGLE
+================================ */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cal+Sans:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&display=swap');
 
-/* Importa Tailwind CSS e animações */
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+/* ===============================
+   TAILWIND CSS
+================================ */
+@import "tailwindcss";
 @import "tw-animate-css";
 
-/* Variáveis CSS para cores e fontes, com backgrounds minimalistas */
-:root {
+/* ===============================
+   CUSTOM VARIANT
+================================ */
+@custom-variant dark (&:is(.dark *));
+
+/* ===============================
+   THEME VARIABLES
+================================ */
+@theme inline {
   --radius: 12px;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 
-  /* Fontes */
-  --font-playfair: 'Playfair Display', serif;
-  --font-raleway: 'Raleway', serif;
-  --font-smoochsans: 'Smooch Sans', sans-serif;
-  --font-calsans: 'Cal Sans', sans-serif;
-  --font-oswald: 'Oswald', sans-serif;
-
-  /* Cores principais */
   --luxury-green: #013220;
 
-  /* Backgrounds minimalistas */
-  --background-offwhite: #F7F7F9;
-  --background-graysoft: #E1E3E6;
-  --background-beigegray: #E9E6E1;
-  --background-iceblue: #F0F4F8;
-  --background-darkminimal: #1A1C20;
+  /* Fonts */
+  --font-playfair: 'Playfair Display', serif;
+  --font-raleway: 'Raleway', serif;
+  --font-cal-sans: 'Cal Sans', serif;
+  --font-oswald: 'Oswald', serif;
+  --font-smoochsans: 'Smooch Sans', sans-serif;
 
-  /* Cores base para light mode */
-  --background: var(--background-offwhite);
+  /* Light mode colors */
+  --background: #F7F7F9;
   --foreground: #222222;
   --card: #FFFFFF;
   --card-foreground: #222222;
@@ -43,126 +46,119 @@
   --input: #E9E6E1;
   --ring: #B0B7C3;
 
-  /* Cores para dark mode */
-  --background-dark: var(--background-darkminimal);
-  --foreground-dark: #EEEEEE;
-  --card-dark: #2C2F33;
-  --card-foreground-dark: #EEEEEE;
-  --border-dark: #444B56;
-  --input-dark: #3C4048;
-  --ring-dark: #7289DA;
+  /* Sidebar (light) */
+  --sidebar: hsl(0 0% 98%);
+  --sidebar-foreground: hsl(240 5.3% 26.1%);
+  --sidebar-primary: hsl(240 5.9% 10%);
+  --sidebar-primary-foreground: hsl(0 0% 98%);
+  --sidebar-accent: hsl(240 4.8% 95.9%);
+  --sidebar-accent-foreground: hsl(240 5.9% 10%);
+  --sidebar-border: hsl(220 13% 91%);
+  --sidebar-ring: hsl(217.2 91.2% 59.8%);
 }
 
-/* Dark mode - modo escuro */
+/* ===============================
+   DARK MODE VARIABLES
+================================ */
 .dark {
-  --background: var(--background-dark);
-  --foreground: var(--foreground-dark);
-  --card: var(--card-dark);
-  --card-foreground: var(--card-foreground-dark);
-  --border: var(--border-dark);
-  --input: var(--input-dark);
-  --ring: var(--ring-dark);
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
 }
 
-/* Tipografia personalizada */
-body {
-  font-family: var(--font-raleway);
-  background-color: var(--background);
-  color: var(--foreground);
-  margin: 0;
-  padding: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* ===============================
+   BASE STYLES
+================================ */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-raleway);
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  a {
+    color: var(--luxury-green);
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
 }
 
-/* Utilitários customizados para fontes */
-.font-playfair {
-  font-family: var(--font-playfair);
+/* ===============================
+   UTILITIES
+================================ */
+@layer utilities {
+  .font-playfair { font-family: var(--font-playfair); }
+  .font-raleway { font-family: var(--font-raleway); }
+  .font-calsans { font-family: var(--font-cal-sans); }
+  .font-oswald { font-family: var(--font-oswald); }
+  .font-smoochsans { font-family: var(--font-smoochsans); }
+
+  .text-luxury-green { color: var(--luxury-green); }
+  .bg-luxury-green { background-color: var(--luxury-green); }
+
+  .bg-offwhite { background-color: #F7F7F9; }
+  .bg-graysoft { background-color: #E1E3E6; }
+  .bg-beigegray { background-color: #E9E6E1; }
+  .bg-iceblue { background-color: #F0F4F8; }
+  .bg-darkminimal { background-color: #1A1C20; }
+
+  .card {
+    background-color: var(--card);
+    color: var(--card-foreground);
+    border-radius: var(--radius);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    transition: box-shadow 0.3s ease;
+  }
+  .card:hover {
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+  }
+
+  /* Produto com movimento suave */
+  .main-product-section {
+    position: relative;
+    transition: transform 0.1s ease-out;
+  }
 }
 
-.font-raleway {
-  font-family: var(--font-raleway);
-}
-
-.font-smoochsans {
-  font-family: var(--font-smoochsans);
-}
-
-.font-calsans {
-  font-family: var(--font-calsans);
-}
-
-.font-oswald {
-  font-family: var(--font-oswald);
-}
-
-/* Backgrounds custom */
-.bg-offwhite {
-  background-color: var(--background-offwhite);
-}
-
-.bg-graysoft {
-  background-color: var(--background-graysoft);
-}
-
-.bg-beigegray {
-  background-color: var(--background-beigegray);
-}
-
-.bg-iceblue {
-  background-color: var(--background-iceblue);
-}
-
-.bg-darkminimal {
-  background-color: var(--background-darkminimal);
-}
-
-/* Bordas e anéis */
-* {
-  border-color: var(--border);
-  outline-color: var(--ring);
-}
-
-/* Transição para suavizar troca de cores (dark mode) */
-body, header, main, footer, section {
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Pequenas melhorias de acessibilidade */
-a {
-  color: var(--luxury-green);
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* Shadow e bordas elegantes para cards */
-.card {
-  background-color: var(--card);
-  color: var(--card-foreground);
-  border-radius: var(--radius);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-  padding: 1.5rem;
-  transition: box-shadow 0.3s ease;
-}
-
-.card:hover {
-  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
-}
-
-/* Outras utilidades se precisar */
-
-/* Variáveis para radius custom */
-:root {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
-}
-
-/* Responsive tweaks */
+/* ===============================
+   RESPONSIVE
+================================ */
 @media (max-width: 768px) {
   main {
     padding-left: 1.5rem;
