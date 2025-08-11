@@ -1,4 +1,3 @@
-// src/components/Header.tsx
 import { Facebook, Instagram, Youtube } from "lucide-react";
 import logo from "@/assets/logo.png";
 
